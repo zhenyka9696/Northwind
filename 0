@@ -1,0 +1,39 @@
+--Коментарии
+select count(*) product;
+select product_name,quantity_per_unit from products
+limit 10;
+select product_id, product_name from products
+where discontinued = false order by product_name
+limit 10;
+select count (*) from products;
+select count (*) from products where discontinued = false;
+select count (*) from products where discontinued = true;
+select count (*) from products where discontinued = false
+union
+select count (*) from products where discontinued = true;
+select count (*) from products where discontinued = false
+union all
+select count (*) from products where discontinued = true;
+select product_name, max(unit_price) from products;
+select product_name, min(unit_price) from products;
+select product_name, unit_price from products
+order by unit_price limit 1;
+select product_name, unit_price from products
+order by unit_price desc limit 1;
+select product_name, unit_price from products
+where discontinued=false and unit_price>=15 and unit_price<=25;
+--select product_name, unit_price from products
+--where discontinued=false and unit_price>=avg(unit_price);
+
+select avg(unit_price) from products;
+select product_name, unit_price from products
+where discontinued=false and unit_price>=(select avg(unit_price) from products);
+select product_name, category_name, company_name, contact_name from
+products inner join categories
+on products.category_id=categories.category_id
+inner join suppliers
+on products.supplier_id=suppliers.supplier_id;
+select last_name, first_name, territory_description from employees
+inner join employee_territories on employees.employee_id=employee_territories.employee_id
+inner join territories
+on territories.territory_id=employee_territories.territory_id;
