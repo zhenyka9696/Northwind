@@ -1,0 +1,29 @@
+//22.03.2022//
+
+select territory_description, region_description from territories 
+natural join region;
+
+select company_name, contact_name, order_date, last_name first_name from customers
+natural join orders
+inner join employees on orders.employee_id= employees.employee_id
+where (order_date>"1996-01-01" and order_date<'1997-01-01');
+
+select * from shippers;
+select ship_via from orders limit 20;
+
+select product_name, company_name, order_date from shippers
+inner join orders on orders.ship_via = shippers.shipper_id
+inner join order_details on orders.order_id = order_details.order_id
+inner join products on order_details.product_id = products.product_id
+where LOWER (company_name)= 'united package';
+
+select category_name, product_name, unit_price
+from products inner join categories on 
+products.category_id=categories.category_id;
+
+create view cat_prod as select category_name, product_name, unit_price
+from products inner join categories on 
+products.category_id=categories.category_id;
+
+SELECT * FROM sqlite_master WHERE type = 'view';
+
